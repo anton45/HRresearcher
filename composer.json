@@ -1,0 +1,15 @@
+{
+    "name": "anton_galeusov/hrresearcher",
+    "autoload": {
+        "psr-4": {
+            "HRresearcher\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anton Goleusov",
+            "email": "antongoleusov@gmail.com"
+        }
+    ],
+    "require": {}
+}
