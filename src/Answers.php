@@ -5,5 +5,7 @@ namespace HRresearcher;
 class Answers
 {
     public $idquestion;
-    private $answer;
+    private $answer1;
+    private $answer2;
+
 }
