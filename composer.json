@@ -2,7 +2,7 @@
     "name": "anton_galeusov/hrresearcher",
     "autoload": {
         "psr-4": {
-            "HRresearcher\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [

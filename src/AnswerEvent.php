@@ -4,9 +4,18 @@ declare(strict_types=1);
 
 namespace App;
 
-class Answerevent
+class AnswerEvent
 {
-    public int $id;
-    public int $questionId;
-    private array $answers;
+    private int $id;
+    private int $userId;
+    private int $questionId;
+    private int $answerId;
+
+    public function __construct(int $id, int $userId, int $questionId, int $answerId)
+    {
+        $this->id = $id;
+        $this->userId = $userId;
+        $this->questionId = $questionId;
+        $this->answerId = $answerId;
+    }
 }

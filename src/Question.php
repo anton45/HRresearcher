@@ -1,19 +1,20 @@
 <?php
 
-namespace HRresearcher;
+declare(strict_types=1);
 
-class Questions
+namespace App;
+
+class Question
 {
-    public $idquestions;
-    public $question;
-    public $answer1;
-    public $answer2;
+    private int $id;
+    private string $questionText;
+    private array $answers;
 
-    function __construct($idquestions, $question, $answer1, $answer2) {
-        $this->idquestions = $idquestions;
-        $this->question = $question;
-        $this->answer1 = $answer1;
-        $this->answer2 = $answer2;
+    public function __construct(int $id, string $questionText, array $answers)
+    {
+        $this->id = $id;
+        $this->questionText = $questionText;
+        $this->answers = $answers;
     }
 
 }

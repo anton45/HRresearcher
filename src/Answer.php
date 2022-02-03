@@ -1,11 +1,19 @@
 <?php
 
-namespace HRresearcher;
+declare(strict_types=1);
 
-class Answers
+namespace App;
+
+class Answer
 {
-    public $idquestion;
-    private $answer1;
-    private $answer2;
+    private int $id;
+    private string $answerText;
+    private int $point;
 
+    public function __construct(int $id, string $answerText, int $point)
+    {
+        $this->id = $id;
+        $this->answerText = $answerText;
+        $this->point = $point;
+    }
 }
