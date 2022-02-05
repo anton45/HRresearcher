@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "answerText": "Yes",
+    "point": 2
+  },
+  {
+    "id": 1,
+    "answerText": "No",
+    "point": 0
+  },
+  {
+    "id": 2,
+    "answerText": "perhaps",
+    "point": 1
+  },
+  {
+    "id": 3,
+    "answerText": "doubt",
+    "point": 1
+  }
+]
