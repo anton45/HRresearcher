@@ -27,6 +27,6 @@ require_once __DIR__ . "/vendor/autoload.php";
 $questionsJsonstring = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'questions.json');
 $questionsJson = json_decode($questionsJsonstring);
 foreach ($questionsJson as $elementJson => $questionObject) {
+    var_dump($questionObject->id);
     $questions = new Question($questionObject->id, $questionObject->questionText, $questionObject->answers);
-    var_dump($questionObject);
 }
