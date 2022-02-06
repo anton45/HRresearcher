@@ -9,9 +9,9 @@ class AnswerEvent
     private int $id;
     private int $userId;
     private int $questionId;
-    private int $answerId;
+    private array $answerId;
 
-    public function __construct(int $id, int $userId, int $questionId, int $answerId)
+    public function __construct(int $id, int $userId, int $questionId, array $answerId)
     {
         $this->id = $id;
         $this->userId = $userId;

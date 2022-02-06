@@ -1,0 +1,42 @@
+[
+  {
+    "id": 10,
+    "userId": 0,
+    "questionId": 0,
+    "answerId": {
+      "0": 0,
+      "1": 1,
+      "2": 2
+    }
+  },
+  {
+    "id": 1,
+    "userId": 0,
+    "questionId": 1,
+    "answerId": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    }
+  },
+  {
+    "id": 0,
+    "userId": 0,
+    "questionId": 0,
+    "answerId": {
+      "0": 0,
+      "1": 1
+    }
+  },
+  {
+    "id": 0,
+    "userId": 0,
+    "questionId": 0,
+    "answerId": {
+      "0": 0,
+      "1": 1,
+      "2": 2
+    }
+  }
+]
