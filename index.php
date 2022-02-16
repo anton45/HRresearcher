@@ -141,22 +141,25 @@ function getJson(string $fileName) {
 //}
 //createAnswer(77, 'test', 16);
 
-//Редактирование ответа
-//function readAnswer(int $id, string $answerText, int $point) {
-//    $jsonAnswer = getJson('answers.json');
-//    $readAnswer = new Answer($id, $answerText, $point);
-//    foreach ($jsonAnswer as $answerObject) {
-//        if ($answerObject->id === $readAnswer->getId()) {
-//            $answerObject->answerText = $readAnswer->getanswerText();
-//            $answerObject->point = $readAnswer->getPoint();
-//        }
-//    }
-//    $readanswerJson = json_encode($jsonAnswer);
-//    $safeAnswer = file_put_contents('answers.json', $readanswerJson);
-//
-//    return($safeAnswer);
-//}
-//readAnswer(3, 'blablab', 34);
+// Чтение ответов
+function
+
+ Редактирование ответа
+function updateAnswer(int $id, string $answerText, int $point) {
+    $jsonAnswer = getJson('answers.json');
+    $updateAnswer = new Answer($id, $answerText, $point);
+    foreach ($jsonAnswer as $answerObject) {
+        if ($answerObject->id === $updateAnswer->getId()) {
+            $answerObject->answerText = $updateAnswer->getanswerText();
+            $answerObject->point = $updateAnswer->getPoint();
+        }
+    }
+    $readanswerJson = json_encode($jsonAnswer);
+    $safeAnswer = file_put_contents('answers.json', $readanswerJson);
+
+    return($safeAnswer);
+}
+updateAnswer(3, 'blablab', 34);
 
 //updateAnswer(1,"Test", 100);
 
