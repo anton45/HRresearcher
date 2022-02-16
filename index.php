@@ -16,20 +16,25 @@ require_once __DIR__ . "/vendor/autoload.php";
  * Сериализую
  * Записываю в Json
  */
-//echo 'sdfsdf';
-//
-//$postData = file_get_contents('php://input');
-//$jsonBody = json_decode($postData, true);
-//var_dump($GLOBALS);
-//var_dump($_SERVER["REQUEST_URI"]);
-//var_dump($jsonBody->answerText);
-//Die();
-//
-//var_dump($_SERVER["REQUEST_URI"]);
-//var_dump($_SERVER["REQUEST_METHOD"]);
-//if ($_SERVER["REQUEST_METHOD"] === "PUT") {
-//    insertAnswer($jsonBody->id, $jsonBody->answerText, $jsonBody->point);
-//}
+echo 'sdfsdf';
+
+$postData = file_get_contents('php://input');
+$jsonBody = json_decode($postData, true);
+var_dump($_SERVER["REQUEST_URI"]);
+var_dump($GLOBALS["jsonBody"]);
+var_dump($_SERVER["REQUEST_METHOD"]);
+if ($_SERVER["REQUEST_METHOD"] === "PUT") {
+    createAnswer($jsonBody["id"], $jsonBody["answerText"], $jsonBody["point"]);
+}
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    readAnswer($jsonBody["id"]);
+}
+if ($_SERVER["REQUEST_METHOD"] === "PATH") {
+    updateAnswer($jsonBody["id"], $jsonBody["answerText"], $jsonBody["point"]);
+}
+if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
+    deleteAnswer($jsonBody["id"]);
+}
 
 
 function getJson(string $fileName) {
@@ -129,24 +134,37 @@ function getJson(string $fileName) {
 //}
 //
 // Добавление нового ответа
-//function createAnswer(int $id, string $answerText, int $point) {
-//    $jsonAnswer = getJson('answers.json');
-//    $createAnswer = new Answer($id, $answerText, $point);
-//    $jsonAnswer[] = ["id" => $createAnswer->getId(), "answerText" => $createAnswer->getanswerText(), "point" => $createAnswer->getPoint()];
-//    $newAnsweroffnull = array_filter($jsonAnswer);;
-//        $newAnsweroffnulljson = json_encode($newAnsweroffnull);
-//        $safeAnswer = file_put_contents('answers.json', $newAnsweroffnulljson);
-//
-//        return $safeAnswer;
-//}
+function createAnswer(int $id, string $answerText, int $point) {
+    $jsonAnswer = getJson('answers.json');
+    $createAnswer = new Answer($id, $answerText, $point);
+    $jsonAnswer[] = ["id" => $createAnswer->getId(), "answerText" => $createAnswer->getanswerText(), "point" => $createAnswer->getPoint()];
+    $newAnsweroffnull = array_filter($jsonAnswer);;
+        $newAnsweroffnulljson = json_encode($newAnsweroffnull);
+        $safeAnswer = file_put_contents('answers.json', $newAnsweroffnulljson);
+
+        return true;
+}
 //createAnswer(77, 'test', 16);
 
 // Чтение ответов
-function
+function readAnswer(array $arrayId) {
+    $jsonAnswer = getJson('answers.json');
+    foreach ($jsonAnswer as $answerObject) {
+        foreach ($arrayId as $id){
+            if ($answerObject->id === $id) {
+                $readAnswer[] = ["id" => $answerObject->id, "answerText"=> $answerObject->answerText, "point"=>$answerObject->point];
+            }
+        }
+    }
+    var_dump($readAnswer);
+    return $readAnswer;
+}
+//readAnswer([1,3]);
 
- Редактирование ответа
+// Редактирование ответа
 function updateAnswer(int $id, string $answerText, int $point) {
     $jsonAnswer = getJson('answers.json');
+    var_dump($jsonAnswer);
     $updateAnswer = new Answer($id, $answerText, $point);
     foreach ($jsonAnswer as $answerObject) {
         if ($answerObject->id === $updateAnswer->getId()) {
@@ -157,11 +175,29 @@ function updateAnswer(int $id, string $answerText, int $point) {
     $readanswerJson = json_encode($jsonAnswer);
     $safeAnswer = file_put_contents('answers.json', $readanswerJson);
 
-    return($safeAnswer);
+    return $safeAnswer;
 }
-updateAnswer(3, 'blablab', 34);
+//updateAnswer(10, 'DDDDDDDDDDDd', 34);
 
-//updateAnswer(1,"Test", 100);
+function deleteAnswer(array $arrayId)
+{
+    $jsonAnswer = getJson('answers.json');
+    foreach ($jsonAnswer as $answerObject) {
+        if (!in_array($answerObject->id, $arrayId)) {
+            $validAnswer[] = ["id" => $answerObject->id, "answerText" => $answerObject->answerText, "point" => $answerObject->point];
+        }
+    }
+    $validanswerJson = json_encode($validAnswer);
+//    if ($jsonAnswer === $validAnswer) {
+//        print_r('Id not found');
+//        return false;
+//    }
+    $safeAnswer = file_put_contents('answers.json', $validanswerJson);
+    return true;
+}
+
+//deleteAnswer([8,5]);
+
 
 //$answer1 = new Answer(10, 'TestTest', 20);
 //$result = $answer1->getId();
