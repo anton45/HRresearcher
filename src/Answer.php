@@ -16,4 +16,13 @@ class Answer
         $this->answerText = $answerText;
         $this->point = $point;
     }
+    public function getId() {
+        return $this->id;
+    }
+    public function getanswerText() {
+        return $this->answerText;
+    }
+    public function getPoint() {
+        return $this->point;
+    }
 }
