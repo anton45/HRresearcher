@@ -7,12 +7,6 @@ use App\Answer;
 require_once __DIR__ . "/vendor/autoload.php";
 
 
-//$pdo = new PDO("pgsql:host=localhost;dbname = hrresearch","anton_galeusov", "1212");
-//$stmt = $pdo->prepare("SELECT * FROM answer");
-//$stmt->execute();
-//
-//var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
-
 
 $postData = file_get_contents('php://input');
 $jsonBody = json_decode($postData, true);
@@ -85,7 +79,6 @@ function readAnswer(int $id = NULL) {
         return true;
 
 }
-// readAnswer(15);
 
 
 function updateAnswer(int $id, string $answerText, int $point)
@@ -108,7 +101,7 @@ function updateAnswer(int $id, string $answerText, int $point)
     print_r('true');
     return true;
 }
-//updateAnswer(14, "DSDSDS", 54);
+
 
 function deleteAnswer($id)
 {
@@ -124,6 +117,6 @@ function deleteAnswer($id)
     print_r('true');
     return true;
 }
-//deleteAnswer(14);
+
 
 
