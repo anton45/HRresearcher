@@ -25,23 +25,4 @@ class Answer
     public function getPoint() {
         return $this->point;
     }
-//
-//
-//
-//
-//    public function deleteAnswer($id)
-//    {
-//        if (!isset($id)) {
-//            print_r('Id is Null');
-//            return false;
-//        }
-//        $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch","anton_galeusov", "1212");
-//        $stmt = $pdo->prepare('DELETE FROM answer WHERE id = :id');
-//        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//        $stmt->execute();
-//        $stmt->fetchAll();
-//        print_r('true');
-//        return true;
-//    }
-//
 }
