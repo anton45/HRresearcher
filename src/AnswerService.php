@@ -18,6 +18,7 @@ class AnswerService
         $maxId = $arraymaxId[0]['max'];
         $resultId = $maxId + 1;
 
+fsdsdfsdf
         return $resultId;
     }
 }
