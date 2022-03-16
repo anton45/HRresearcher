@@ -24,7 +24,6 @@ class AnswerRepository
         $stmt->bindParam(':point', $newPoint);
         $stmt->execute();
         $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
         return true;
     }
         public function read(int $id = NULL) {
