@@ -24,6 +24,7 @@ class AnswerRepository
         $stmt->bindParam(':point', $newPoint);
         $stmt->execute();
         $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        print_r('success');
         return true;
     }
         public function read(int $id = NULL) {
@@ -31,6 +32,7 @@ class AnswerRepository
             $stmt = $this->pdo->prepare("SELECT * FROM answer");
             $stmt->execute();
             var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
+            print_r('success');
             return true;
         }
         $stmt = $this->pdo->prepare("SELECT * FROM answer WHERE id = :id");
@@ -38,10 +40,10 @@ class AnswerRepository
         $stmt->execute();
         $idDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (count($idDb) < 1) {
-            print_r('false');
+            print_r('failure');
             return false;
         }
-        var_dump($idDb);
+        print_r($idDb);
         return true;
 
     }
@@ -60,7 +62,7 @@ class AnswerRepository
         $stmt->bindParam(':point', $newPoint, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->fetchAll();
-        print_r('true');
+        print_r('success');
         return true;
     }
 
@@ -73,7 +75,7 @@ class AnswerRepository
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->fetchAll();
-        print_r('true');
+        print_r('success');
         return true;
     }
 }

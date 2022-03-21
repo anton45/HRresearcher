@@ -1,18 +1,19 @@
 {
-  "name": "anton_galeusov/hrresearcher",
-  "autoload": {
-    "psr-4": {
-      "App\\": "src/"
+    "name": "anton_galeusov/hrresearcher",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Controller\\": "Controller/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anton Goleusov",
+            "email": "antongoleusov@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*",
+        "ext-json": "*"
     }
-  },
-  "authors": [
-    {
-      "name": "Anton Goleusov",
-      "email": "antongoleusov@gmail.com"
-    }
-  ],
-  "require": {
-    "ext-pdo": "*",
-    "ext-json": "*"
-  }
 }
