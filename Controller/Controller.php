@@ -19,12 +19,6 @@ class Controller
         $this->arrayUri = $arrayUri;
     }
 
-    public function test($jsonBody)
-    {
-        print_r($jsonBody);
-        return true;
-    }
-
     public function main($jsonBody, $arrayUri)
     {
         if ($_SERVER["REQUEST_METHOD"] === "PUT" && $arrayUri[1] = 'createAnswer') {
