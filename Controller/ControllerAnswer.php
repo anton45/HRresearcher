@@ -34,7 +34,6 @@ class Controller
         if ($_SERVER["REQUEST_METHOD"] === "GET" && $arrayUri[1] = 'readAnswer') {
             $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
 
-
             $answerRepository = new \App\AnswerRepository($pdo);
             $id = $jsonBody["id"];
             $result = $answerRepository->read($id);
@@ -44,14 +43,14 @@ class Controller
             $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
 
             $answerRepository = new \App\AnswerRepository($pdo);
-            $answer = new Answer($jsonBody["id"], $jsonBody["answerText"], $jsonBody["point"]);
+            $answer = new \App\Answer($jsonBody["id"], $jsonBody["answerText"], $jsonBody["point"]);
             $result = $answerRepository->update($answer);
             echo 123;
         }
         if ($_SERVER["REQUEST_METHOD"] === "DELETE" && $arrayUri[1] = 'deleteAnswer') {
             // вызвать метод deleteAnswer
             $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
-            $answerRepository = new AnswerRepository($pdo);
+            $answerRepository = new \App\AnswerRepository($pdo);
             $id = $jsonBody["id"];
             $result = $answerRepository->delete($id);
             echo 123;
