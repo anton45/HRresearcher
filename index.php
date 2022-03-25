@@ -16,4 +16,4 @@ if ($arrayUri[0] === 'answer') {
     $controller = new ControllerAnswer($postData, $jsonBody, $arrayUri);
     $result = $controller->main($jsonBody, $arrayUri);
 }
-
+echo 3423;
