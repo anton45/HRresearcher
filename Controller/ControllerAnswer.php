@@ -6,7 +6,7 @@ use PDO;
 use App\AnswerRepository;
 use App\Answer;
 
-class Controller
+class ControllerAnswer
 {
     private $postData;
     private $jsonBody;
