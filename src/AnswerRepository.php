@@ -7,15 +7,10 @@ use PDO;
 
 class AnswerRepository
 {
-    private \PDO $pdo;
-
-    public function  __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
 
     public function save(Answer $answer): bool {
-        $stmt = $this->pdo->prepare('INSERT INTO answer (id, answer_text, point) VALUES (:id, :answerText, :point)');
+        $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
+        $stmt = $pdo->prepare('INSERT INTO answer (id, answer_text, point) VALUES (:id, :answerText, :point)');
         $newId = $answer->getId();
         $newAnswerText = $answer->getanswerText();
         $newPoint = $answer->getPoint();
@@ -28,14 +23,15 @@ class AnswerRepository
         return true;
     }
         public function read(int $id = NULL) {
+        $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
         if (!isset($id)) {
-            $stmt = $this->pdo->prepare("SELECT * FROM answer");
+            $stmt = $pdo->prepare("SELECT * FROM answer");
             $stmt->execute();
             var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
             print_r('success');
             return true;
         }
-        $stmt = $this->pdo->prepare("SELECT * FROM answer WHERE id = :id");
+        $stmt = $pdo->prepare("SELECT * FROM answer WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $idDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,7 +49,9 @@ class AnswerRepository
 //            print_r('Text answer not found');
 //            return false;
 //        }
-        $stmt = $this->pdo->prepare('update answer set answer_text = :answerText, point = :point where id = :id');
+
+            $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
+        $stmt = $pdo->prepare('update answer set answer_text = :answerText, point = :point where id = :id');
         $newId = $answer->getId();
         $newanswerText = $answer->getanswerText();
         $newPoint = $answer->getPoint();
@@ -67,15 +65,26 @@ class AnswerRepository
     }
 
         public function delete($id) {
+        $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
         if (!isset($id)) {
             print_r('Id is Null');
             return false;
         }
-        $stmt = $this->pdo->prepare('DELETE FROM answer WHERE id = :id');
+        $stmt = $pdo->prepare('DELETE FROM answer WHERE id = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->fetchAll();
         print_r('success');
         return true;
+    }
+    public function generateId(): int {
+        $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
+        $stmt = $pdo->prepare("SELECT MAX(id) FROM answer");
+        $stmt->execute();
+        $arraymaxId = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $maxId = $arraymaxId[0]['max'];
+        $resultId = $maxId + 1;
+
+        return $resultId;
     }
 }

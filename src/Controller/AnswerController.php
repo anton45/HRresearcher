@@ -2,12 +2,9 @@
 
 namespace App\Controller;
 
-use PDO;
-use App\AnswerRepository;
-use App\Answer;
-use App\AnswerService;
+use App\Service\AnswerService;
 
-class ControllerAnswer
+class AnswerController
 {
     private $postData;
     private $jsonBody;
@@ -23,37 +20,24 @@ class ControllerAnswer
     public function main($jsonBody, $arrayUri)
     {
         if ($_SERVER["REQUEST_METHOD"] === "PUT" && $arrayUri[2] === 'createAnswer') {
-            $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
-            $answerService = new AnswerService($pdo);
-            $id = $answerService->generateId();
-            $answer = new Answer($id, $jsonBody["answerText"], $jsonBody["point"]);
-
-            $answerRepository = new AnswerRepository($pdo);
-            $result = $answerRepository->save($answer);
+            $answerService = new AnswerService($jsonBody);
+            $result = $answerService->create($jsonBody);
             echo 123;
         }
         if ($_SERVER["REQUEST_METHOD"] === "GET" && $arrayUri[2] === 'readAnswer') {
-            $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
-
-            $answerRepository = new AnswerRepository($pdo);
-            $id = $jsonBody["id"];
-            $result = $answerRepository->read($id);
+            $answerService = new AnswerService($jsonBody);
+            $result = $answerService->read($jsonBody);
             echo 123;
         }
         if ($_SERVER["REQUEST_METHOD"] === "PATCH" && $arrayUri[2] === 'updateAnswer') {
-            $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
-
-            $answerRepository = new AnswerRepository($pdo);
-            $answer = new Answer($jsonBody["id"], $jsonBody["answerText"], $jsonBody["point"]);
-            $result = $answerRepository->update($answer);
+            $answerService = new AnswerService($jsonBody);
+            $result = $answerService->update($jsonBody);
             echo 123;
         }
         if ($_SERVER["REQUEST_METHOD"] === "DELETE" && $arrayUri[2] === 'deleteAnswer') {
             // вызвать метод deleteAnswer
-            $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
-            $answerRepository = new AnswerRepository($pdo);
-            $id = $jsonBody["id"];
-            $result = $answerRepository->delete($id);
+            $answerService = new AnswerService($jsonBody);
+            $result = $answerService->delete($jsonBody);
             echo 123;
         }
     }
