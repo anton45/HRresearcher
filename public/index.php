@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types=1);
+namespace App;
 
-use App\Answer;
 use App\Controller\AnswerController;
 
-require_once __DIR__ . "/vendor/autoload.php";
+require_once __DIR__ . '/../vendor/autoload.php';
 
 
 $postData = file_get_contents('php://input');
@@ -14,4 +13,4 @@ $arrayUri = explode('/', $_SERVER["REQUEST_URI"]);
 
 $controller = new AnswerController($postData, $jsonBody, $arrayUri);
 $result = $controller->main($jsonBody, $arrayUri);
-echo 3423;
+echo 1;

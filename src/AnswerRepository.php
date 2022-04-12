@@ -19,7 +19,7 @@ class AnswerRepository
         $stmt->bindParam(':point', $newPoint);
         $stmt->execute();
         $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        print_r('success');
+        echo 3;
         return true;
     }
         public function read(int $id = NULL) {
@@ -28,7 +28,7 @@ class AnswerRepository
             $stmt = $pdo->prepare("SELECT * FROM answer");
             $stmt->execute();
             var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
-            print_r('success');
+            echo 3;
             return true;
         }
         $stmt = $pdo->prepare("SELECT * FROM answer WHERE id = :id");
@@ -36,7 +36,7 @@ class AnswerRepository
         $stmt->execute();
         $idDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (count($idDb) < 1) {
-            print_r('failure');
+            echo 3;
             return false;
         }
         print_r($idDb);
@@ -60,21 +60,21 @@ class AnswerRepository
         $stmt->bindParam(':point', $newPoint, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->fetchAll();
-        print_r('success');
+        echo 3;
         return true;
     }
 
         public function delete($id) {
         $pdo = new PDO("pgsql:host=localhost;dbname = hrresearch", "anton_galeusov", "1212");
         if (!isset($id)) {
-            print_r('Id is Null');
+            echo 3;
             return false;
         }
         $stmt = $pdo->prepare('DELETE FROM answer WHERE id = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->fetchAll();
-        print_r('success');
+        echo 3;
         return true;
     }
     public function generateId(): int {

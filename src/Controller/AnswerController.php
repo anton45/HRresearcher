@@ -22,23 +22,23 @@ class AnswerController
         if ($_SERVER["REQUEST_METHOD"] === "PUT" && $arrayUri[2] === 'createAnswer') {
             $answerService = new AnswerService($jsonBody);
             $result = $answerService->create($jsonBody);
-            echo 123;
+            echo 2;
         }
         if ($_SERVER["REQUEST_METHOD"] === "GET" && $arrayUri[2] === 'readAnswer') {
             $answerService = new AnswerService($jsonBody);
             $result = $answerService->read($jsonBody);
-            echo 123;
+            echo 2;
         }
         if ($_SERVER["REQUEST_METHOD"] === "PATCH" && $arrayUri[2] === 'updateAnswer') {
             $answerService = new AnswerService($jsonBody);
             $result = $answerService->update($jsonBody);
-            echo 123;
+            echo 2;
         }
         if ($_SERVER["REQUEST_METHOD"] === "DELETE" && $arrayUri[2] === 'deleteAnswer') {
             // вызвать метод deleteAnswer
             $answerService = new AnswerService($jsonBody);
             $result = $answerService->delete($jsonBody);
-            echo 123;
+            echo 2;
         }
     }
 
